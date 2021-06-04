@@ -1,2 +1,1 @@
-# qu-path
-Contains basic code for QuPath
+# This repo contains code for performing basic task using QuPATH
