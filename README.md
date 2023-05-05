@@ -1,7 +1,3 @@
-# QuPATH Basic Tasks Repository
-
-This repo contains code for performing basic tasks using QuPATH.
-
 # QuPath Groovy Scripting Guide
 
 This repository contains a guide on how to use Groovy code in QuPath for automation and customization purposes. QuPath offers a built-in script editor that allows you to write and run Groovy scripts to perform various tasks and extend the functionality of the software.
@@ -36,9 +32,8 @@ List<ImageData> imageDataList = project.getImageList()
 imageDataList.each { imageData ->
     println "Image name: ${imageData.getServer().getMetadata().getName()}"
 }
-
-
-
+```
+Copy and paste this script into the QuPath script editor and run it to see the output.
 
 ## Acknowledgements
 
