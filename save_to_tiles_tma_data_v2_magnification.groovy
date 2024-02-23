@@ -27,6 +27,7 @@ for (cores in hierarchy_cores) {
         }
         
         // Change the downsample factor here to adjust magnification
+        // Here double desiredDownsample = 1 means maximum magnification /highest zoom 
         double desiredDownsample = 2 // Example for half the original resolution or double the original downsample
         def region = RegionRequest.createInstance(server.getPath(), desiredDownsample, roi)
 
