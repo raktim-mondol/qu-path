@@ -1,7 +1,7 @@
 import qupath.lib.images.servers.ImageServer
 import qupath.lib.objects.PathObject
 import qupath.lib.regions.RegionRequest
-import qupath.lib.common.GeneralTools // Corrected import statement
+import qupath.lib.common.GeneralTools 
 import java.io.File
 import qupath.lib.images.writers.ImageWriterTools
 
