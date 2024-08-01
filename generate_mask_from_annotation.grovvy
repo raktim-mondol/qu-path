@@ -1,0 +1,43 @@
+import qupath.lib.images.servers.LabeledImageServer
+import qupath.lib.objects.PathObjects
+import qupath.lib.regions.RegionRequest
+import qupath.lib.images.writers.ImageWriterTools
+import java.awt.image.BufferedImage
+import java.awt.Graphics2D
+
+def imageData = getCurrentImageData()
+def server = imageData.getServer()
+def hierarchy = imageData.getHierarchy()
+
+// Filter for tumor annotations
+def tumorAnnotations = hierarchy.getAnnotationObjects().findAll {it.getPathClass() == getPathClass("Tumor")}
+
+if (tumorAnnotations.isEmpty()) {
+    print "No tumor annotations found. Please ensure you have a tumor annotation in your image."
+    return
+}
+
+// Define output path
+def outputPath = "C:\\Users\\rakti\\Downloads\\qupath\\tumor_mask.tif"
+
+// Get the full image bounds
+def bounds = RegionRequest.createInstance(server.getPath(), 1, 0, 0, server.getWidth(), server.getHeight())
+
+// Create a blank binary image
+def img = new BufferedImage(server.getWidth(), server.getHeight(), BufferedImage.TYPE_BYTE_GRAY)
+def g2d = img.createGraphics()
+g2d.setColor(java.awt.Color.WHITE)
+
+// Draw each tumor annotation
+tumorAnnotations.each { annotation ->
+    def roi = annotation.getROI()
+    def shape = roi.getShape()
+    g2d.fill(shape)
+}
+
+g2d.dispose()
+
+// Write the binary mask
+ImageWriterTools.writeImage(img, outputPath)
+
+print "Tumor mask saved to: " + outputPath
