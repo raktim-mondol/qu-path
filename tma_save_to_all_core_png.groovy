@@ -18,6 +18,7 @@ def tmaCores = tmaGrid.getTMACoreList()
 
 // Set export parameters
 def outputDir = "C:/Users/rakti/Downloads/qupath/annotation"
+// Location Path Has to be Forward Slash
 def imageExtension = ".png"
 def downsample = 5.0 // Set to 1.0 for full resolution
 
